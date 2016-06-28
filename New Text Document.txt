@@ -1,0 +1,93 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+struct node{
+    int data;
+    struct node *next;
+}*head1,*temp1,*head;
+struct node1{
+    int data;
+    struct node1 *next;
+    struct node1 *prev;
+}*head2,*temp2,*temp3;
+
+void display (struct node1 *root)
+{
+    while(root!=NULL)
+    {
+    printf("%d-->",root->data);
+    root=root->next;
+    }
+    printf("NULL");
+}
+
+struct node* insert()
+{
+char ch;
+ while(ch!='n')
+ {
+ struct node *New;
+ New=(struct node *)malloc(sizeof(struct node));
+
+ printf("Enter the data for SLL : ");
+ scanf("%d",&New->data);
+ New->next=NULL;
+
+  if(head1==NULL)
+  {
+  head1=New;
+  temp1=New;
+  }
+  else
+  {
+  temp1->next=New;
+  temp1=New;
+  }
+ printf("\nDo you want to create another node(y or n): ");
+ scanf("%c",&ch);
+ }
+ return head1;
+}
+void doubly(struct node *temp2,int y)
+{
+    int cnt=0;int t=y;
+    while(temp2->next->next!=NULL)
+    {
+     struct node1 *New1;
+    New1=(struct node1 *)malloc(sizeof(struct node1));
+    New1->next=NULL;
+    New1->prev=NULL;
+    if(cnt==0)
+    {
+        New1->data=temp2->data;
+        head2=New1;
+        temp3=New1;
+        cnt++;
+    }
+    else
+    {
+        while(y!=0)
+        {
+           temp2=temp2->next;
+           y--;
+        }
+        y=t;
+        New1->data=temp2->data;
+        temp3->next=New1;
+        New1->prev=temp3;
+        temp3=New1;
+    }
+    }
+    display(head2);
+}
+
+void main() {
+
+    int n;
+    clrscr();
+    head=insert();
+    printf("Enter n value:");
+    scanf("%d",&n);
+    doubly(head,n);
+    getch();
+}
