@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include<math.h>
+
+int main() 
+{
+double fn;
+long int i,count=0,a,n=0;
+char st[100],b;
+scanf("%lf",&fn);
+//printf("%d\n",(int)fn);
+
+while(fn!=((int)fn))
+{
+  fn=fn*10;
+  count++;
+  fflush(stdin);
+}
+
+int c=fn;
+//printf("-->%d\n",c);
+while(c)
+{
+    
+     if(n==count) {
+         st[n]='.';
+         n++;
+     }
+     a=c%10;
+    if(a<9)
+    {
+        st[n]=((c%10)+1)+'0';
+        n++;
+    }
+    else{
+        st[n]=(c%10)+'0';
+        n++;
+    }
+    c=c/10;
+    //printf("%d\n",n);
+}
+for(i=n-1;i>=0;i--)
+{
+    printf("%c",st[i]);
+}
+
+	return 0;
+}
+
